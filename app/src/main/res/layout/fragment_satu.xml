@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".pertemuan6.SatuFragment"
+    android:background="@drawable/bg">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Ini Fragment 1"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#7A1743"
+        android:fontFamily="@font/super_waffles"
+        />
+
+</FrameLayout>

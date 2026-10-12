@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.lindi_tib.databinding.ActivityLoginBinding
 import com.example.lindi_tib.databinding.ActivityMainBinding
 import com.example.lindi_tib.pertemuan5.LimaActivity
+import com.example.lindi_tib.pertemuan6.SixthActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
         val user=intent.getStringExtra("username")
         val pass=intent.getStringExtra("password")
         val umur=intent.getIntExtra("umur", 0)
@@ -67,6 +70,27 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnToLima.setOnClickListener {
             startActivity(Intent(this, LimaActivity::class.java))
+        }
+
+        binding.btnToSix.setOnClickListener {
+            startActivity(Intent(this, SixthActivity::class.java))
+        }
+
+        binding.btnLogout.setOnClickListener {
+
+            AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Apakah Anda yakin ingin keluar?")
+                .setPositiveButton("Ya") { dialog, _ ->
+                    val editor = sharedPref.edit()
+                    editor.clear()
+                    editor.apply()
+                    dialog.dismiss()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                }
+                .setNegativeButton("Batal") { dialog, _ -> dialog.dismiss() }
+                .show()
         }
     }
 }
