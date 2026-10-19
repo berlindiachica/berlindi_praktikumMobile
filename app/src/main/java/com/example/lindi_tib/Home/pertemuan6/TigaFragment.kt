@@ -1,4 +1,4 @@
-package com.example.lindi_tib.pertemuan6
+package com.example.lindi_tib.Home.pertemuan6
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

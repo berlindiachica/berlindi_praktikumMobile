@@ -1,4 +1,4 @@
-package com.example.lindi_tib.pertemuan5
+package com.example.lindi_tib.Home.pertemuan5
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.lindi_tib.R
 import com.example.lindi_tib.databinding.ActivityLimaBinding
-import com.example.lindi_tib.databinding.ActivityMainBinding
 import com.example.lindi_tib.databinding.ActivityWebViewBinding
 
 class WebViewActivity : AppCompatActivity() {

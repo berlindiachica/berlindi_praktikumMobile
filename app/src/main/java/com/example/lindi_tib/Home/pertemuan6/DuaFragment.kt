@@ -1,4 +1,4 @@
-package com.example.lindi_tib.pertemuan6
+package com.example.lindi_tib.Home.pertemuan6
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.lindi_tib.R
 
-class SatuFragment : Fragment() {
+
+class DuaFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_satu, container, false)
+        return inflater.inflate(R.layout.fragment_dua, container, false)
     }
-
 
 }

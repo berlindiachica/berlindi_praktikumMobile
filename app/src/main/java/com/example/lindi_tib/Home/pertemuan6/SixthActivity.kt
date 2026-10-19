@@ -1,30 +1,23 @@
-package com.example.lindi_tib.pertemuan5
+package com.example.lindi_tib.Home.pertemuan6
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.example.lindi_tib.R
-import com.example.lindi_tib.databinding.ActivityLimaBinding
-import com.example.lindi_tib.databinding.ActivityLoginBinding
+import com.example.lindi_tib.databinding.ActivitySixthBinding
 
-class LimaActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityLimaBinding
-
+class SixthActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySixthBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        binding = ActivityLimaBinding.inflate(layoutInflater)
+        binding = ActivitySixthBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -32,19 +25,27 @@ class LimaActivity : AppCompatActivity() {
             insets
         }
 
-        binding.btnWeb.setOnClickListener {
-            startActivity(Intent(this, WebViewActivity::class.java))
-        }
-
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            title = "Halaman Pertemuan 5"
-            subtitle = "Ini adalah subtitle"
+            title = "Activity Sixth"
+            subtitle = "Penerapan Fragment"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
 
+        replaceFragment(SatuFragment(), addToBackStack = false)
+
+        binding.btnFragment1.setOnClickListener { replaceFragment(SatuFragment()) }
+        binding.btnFragment2.setOnClickListener { replaceFragment(DuaFragment()) }
+        binding.btnFragment3.setOnClickListener { replaceFragment(TigaFragment()) }
+
+    }
+    private fun replaceFragment(fragment: Fragment, addToBackStack: Boolean = true) {
+        val transaction = supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentContainer.id, fragment)
+        if (addToBackStack) transaction.addToBackStack(null)
+        transaction.commit()
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -52,27 +53,7 @@ class LimaActivity : AppCompatActivity() {
                 onBackPressedDispatcher.onBackPressed()
                 true
             }
-            R.id.action_search -> {
-                Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show()
-                true
-            }
-            R.id.action_settings -> {
-                Toast.makeText(this,"Settings Clicked", Toast.LENGTH_SHORT).show()
-                true
-            }
-            R.id.action_profile -> {
-                Toast.makeText(this,"Profile Clicked", Toast.LENGTH_SHORT).show()
-                true
-            }
             else -> super.onOptionsItemSelected(item)
         }
-
     }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        return true
-    }
-
-
 }
