@@ -1,8 +1,12 @@
 package com.example.lindi_tib.Message
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -40,9 +44,28 @@ class MessageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "Message"
-    val adapter = MessageAdapter(requireContext(), messageList)
-    binding.listMassageItems.adapter = adapter
 
+        val adapter = MessageAdapter(requireContext(), messageList)
+        binding.listMassageItems.adapter = adapter
 
+        setHasOptionsMenu(true)
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.message_toolbar_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_tutorial -> {
+                val intent = Intent(
+                    requireContext(),
+                    TutorialMessageActivity::class.java
+                )
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }
